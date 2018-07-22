@@ -15,3 +15,5 @@ yarn-error.log
 #/public/css
 #/public/mix-manifest.json
 phpunit.dusk.xml
+.phpstorm.meta.php
+_ide_helper.php
