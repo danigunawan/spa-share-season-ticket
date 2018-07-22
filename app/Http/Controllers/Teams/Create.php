@@ -101,6 +101,7 @@ class Create extends Controller {
 					$teamPick = new TeamPick();
 					$teamPick->team()->associate( $team );
 					$teamPick->participant()->associate( $pick->getParticipant()->getId() );
+					$teamPick->pick_guid = null;
 					$teamPick->save();
 
 				}
