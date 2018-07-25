@@ -18,7 +18,7 @@
                     <pick-orders :guid="guid"></pick-orders>
                 </div>
                 <div class="col-md-6">
-                    Available To Picks
+                    <schedule :header="schedules_header" :schedules_url="schedules_url"></schedule>
                 </div>
             </div>
 
@@ -28,10 +28,10 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
   import Team from '~/components/Team'
   import Participants from '../components/Participants'
   import PickOrders from '../components/PickOrders'
+  import Schedule from '../components/Schedule'
 
   export default {
     layout: 'basic',
@@ -40,11 +40,14 @@
       return { title: this.$t('home') }
     },
 
-    computed: mapGetters({
-      authenticated: 'auth/check'
-    }),
+    computed: {
+      schedules_url () {
+        return '/api/teams/' + this.guid + '/picks/available'
+      }
+    },
 
     components: {
+      Schedule,
       PickOrders,
       Participants,
       Team
@@ -52,7 +55,8 @@
 
     data: () => ({
       title: window.config.appName,
-      guid: ''
+      guid: '',
+      schedules_header: 'Available to Picks'
     }),
 
     created () {

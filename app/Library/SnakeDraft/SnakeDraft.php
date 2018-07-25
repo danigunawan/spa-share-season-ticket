@@ -71,6 +71,7 @@ class SnakeDraft {
 				}
 
 				$participant         = array_shift( $participant_on_round );
+				/** @var int $i */
 				$participant_picks[] = new SnakeDraftParticipantPick( $i, $participant );
 			}
 

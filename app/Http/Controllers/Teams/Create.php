@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Teams;
 
+use App\Events\TeamRegistered;
 use App\Exceptions\FansFirstException;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Invokable;
@@ -106,6 +107,8 @@ class Create extends Controller {
 
 				}
 			}
+
+			event( new TeamRegistered( $team ) );
 		} );
 
 

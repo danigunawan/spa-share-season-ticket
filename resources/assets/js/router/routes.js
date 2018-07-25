@@ -11,8 +11,8 @@ const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.def
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
 
 const Team = () => import('~/pages/team').then(m => m.default || m)
-const Confirm = () => import('~/pages/team').then(m => m.default || m)
-const Pick = () => import('~/pages/team').then(m => m.default || m)
+const Confirm = () => import('~/pages/participant_confirm').then(m => m.default || m)
+const Pick = () => import('~/pages/participant_pick').then(m => m.default || m)
 const Participant = () => import('~/pages/team').then(m => m.default || m)
 
 export default [
@@ -25,7 +25,7 @@ export default [
 
   { path: '/team/:guid', name: 'team', component: Team },
   { path: '/confirm/:guid', name: 'participant.confirm', component: Confirm },
-  { path: '/pick/:guid', name: 'participant.pick', component: Pick },
+  { path: '/pick/:guid/:schedule_id', name: 'participant.pick', component: Pick },
   { path: '/participant/:guid', name: 'participant', component: Participant },
 
   { path: '/home', name: 'home', component: Home },

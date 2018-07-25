@@ -35,16 +35,22 @@ Route::group( [ 'middleware' => 'guest:api' ],
 
 		Route::post( 'oauth/{driver}', 'Auth\OAuthController@redirectToProvider' );
 		Route::get( 'oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback' )->name( 'oauth.callback' );
-		Route::get( 'schedules', \App\Http\Controllers\Schedules\Index::$classNameSpace );
+		Route::get( 'schedules', \App\Http\Controllers\Schedules\Index::__getClassNameSpace() );
 
-		//GADGETS
 		Route::prefix( 'teams' )->group(
 			function () {
-				Route::post( '/register', \App\Http\Controllers\Teams\Create::$classNameSpace );
-				Route::get( '/{guid}/participants', \App\Http\Controllers\Teams\Participants::$classNameSpace );
-				Route::get( '/{guid}/picks', \App\Http\Controllers\Teams\Picks::$classNameSpace );
-				Route::get( '/{guid}/picks/available', \App\Http\Controllers\Teams\AvailablePicks::$classNameSpace );
-				Route::get( '/{guid}', \App\Http\Controllers\Teams\Get::$classNameSpace );
+				Route::post( '/register', \App\Http\Controllers\Teams\Create::__getClassNameSpace() );
+				Route::get( '/{guid}/participants', \App\Http\Controllers\Teams\Participants::__getClassNameSpace() );
+				Route::get( '/{guid}/picks', \App\Http\Controllers\Teams\Picks::__getClassNameSpace() );
+				Route::get( '/{guid}/picks/available', \App\Http\Controllers\Teams\AvailablePicks::__getClassNameSpace() );
+				Route::get( '/{guid}', \App\Http\Controllers\Teams\Get::__getClassNameSpace() );
+			}
+		);
+
+		Route::prefix( 'participants' )->group(
+			function () {
+				Route::post( '/pick/{guid}/{schedule_id}', \App\Http\Controllers\Participants\Pick::__getClassNameSpace() );
+				Route::post( '/{guid}/confirm', \App\Http\Controllers\Participants\Confirm::__getClassNameSpace() );
 			}
 		);
 	} );

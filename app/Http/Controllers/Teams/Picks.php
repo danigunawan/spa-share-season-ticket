@@ -15,7 +15,7 @@ class Picks extends Controller {
 	 * @return Team
 	 */
 	public function __invoke( string $guid ) {
-		return Team::whereGuid( $guid )->firstOrFail()->picks;
+		return Team::whereGuid( $guid )->firstOrFail()->picks()->with( [ 'team' ] )->get();
 
 	}
 }

@@ -28,6 +28,10 @@ class SnakeDraftParticipantPick {
 		return ! is_null( $this->pick );
 	}
 
+	public function getId(): int {
+		return $this->id;
+	}
+
 	public function getParticipant() {
 		return $this->participant;
 	}

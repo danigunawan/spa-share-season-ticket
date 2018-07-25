@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereSeatSection( $value )
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereUpdatedAt( $value )
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\TeamPick[]    $picks
+ * @property-read mixed $is_all_confirmed
  */
 class Team extends Model {
 	/**

@@ -24,12 +24,21 @@ axios.interceptors.request.use(request => {
 // Response interceptor
 axios.interceptors.response.use(response => response, error => {
   const { status } = error.response
+  const { data } = error.response
+  let message = i18n.t('error_alert_text')
 
-  if (status >= 500) {
+  if (data !== undefined) {
+    message = data
+  }
+  if (data.message !== undefined) {
+    message = data.message
+  }
+
+  if (status >= 400) {
     swal({
       type: 'error',
       title: i18n.t('error_alert_title'),
-      text: i18n.t('error_alert_text'),
+      text: message,
       reverseButtons: true,
       confirmButtonText: i18n.t('ok'),
       cancelButtonText: i18n.t('cancel')

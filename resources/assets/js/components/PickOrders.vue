@@ -19,7 +19,12 @@
                         <td>{{ pick.participant_extra.participant_name }}</td>
                         <td>{{ pick.participant.email }}</td>
                         <td v-if="pick.schedule_id"><span class="badge badge-success">{{ pick.schedule.name }} {{ pick.schedule.time }}</span></td>
-                        <td v-else><span class="badge badge-warning">NOT PICKED</span></td>
+                        <td v-else>
+                            <span class="badge badge-danger" v-if="!pick.participant_extra.is_confirmed">NOT CONFIRMED</span>
+                            <span class="badge badge-info" v-if="!pick.team.is_picking && pick.participant_extra.is_confirmed">CONFIRMED</span>
+                            <span class="badge badge-warning" v-if="pick.team.is_picking && pick.is_picking">TURN TO PICK</span>
+                            <span class="badge badge-info" v-if="pick.team.is_picking && !pick.is_picking">NOT TURN TO PICK</span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
