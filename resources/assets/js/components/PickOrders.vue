@@ -20,7 +20,13 @@
                         <td v-else>
                             <span class="badge badge-danger" v-if="!pick.participant_extra.is_confirmed">NOT CONFIRMED</span>
                             <span class="badge badge-info" v-if="!pick.team.is_picking && pick.participant_extra.is_confirmed">CONFIRMED</span>
-                            <span class="badge badge-warning" v-if="pick.team.is_picking && pick.is_picking">TURN TO PICK</span>
+                            <div v-if="pick.team.is_picking && pick.is_picking">
+                                <span class="badge badge-warning">TURN TO PICK</span>
+                                <countdown :time="10 * 60 * 60 * 1000">
+                                    <template slot-scope="props">{{ props.hours }} hours, {{ props.minutes }} minutes, {{ props.seconds }} seconds.</template>
+                                </countdown>
+                            </div>
+
                             <span class="badge badge-info" v-if="pick.team.is_picking && !pick.is_picking">NOT TURN TO PICK</span>
                         </td>
                     </tr>
@@ -41,10 +47,12 @@
   import 'vue-loading-overlay/dist/vue-loading.min.css'
 
   import axios from 'axios'
+  import VueCountdown from '@xkeshi/vue-countdown'
 
   export default {
     components: {
-      Loading
+      Loading,
+      countdown: VueCountdown
     },
 
     props: ['guid'],
