@@ -8,6 +8,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Status</th>
                     </tr>
                     <tr v-for="participant in data">
                         <td>{{ participant.name }}</td>
@@ -44,7 +45,8 @@
     data: () => ({
       isError: false,
       loading: false,
-      data: []
+      data: [],
+      team: {}
     }),
 
     watch: {},
@@ -57,7 +59,8 @@
           this.loading = true
           this.isError = false
           const { data } = await axios.get('/api/teams/' + this.guid + '/participants')
-          this.data = data
+          this.team = data.team
+          this.data = data.participants
         } catch (e) {
           console.log(e)
           this.isError = true

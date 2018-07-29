@@ -12,10 +12,12 @@ class Participants extends Controller {
 	/**
 	 * @param string $guid
 	 *
-	 * @return Team
+	 * @return Team|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
 	 */
 	public function __invoke( string $guid ) {
-		return Team::whereGuid( $guid )->firstOrFail()->participants;
+		$team = Team::whereGuid( $guid )->with( [ 'participants' ] )->firstOrFail();
+
+		return $team;
 
 	}
 }
