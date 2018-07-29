@@ -1,23 +1,21 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <h2>Pick Orders</h2>
+            <h2>Selections</h2>
             <loading :active.sync="loading" :is-full-page="false"></loading>
             <div class="table-responsive" v-if="!isError">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">Order</th>
+                        <th scope="col">Pick</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Picked</th>
+                        <th scope="col">Game</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="(pick,key) in data">
                         <th scope="row">#{{ key+1 }}</th>
                         <td>{{ pick.participant_extra.participant_name }}</td>
-                        <td>{{ pick.participant.email }}</td>
                         <td v-if="pick.schedule_id"><span class="badge badge-success">{{ pick.schedule.name }} {{ pick.schedule.time }}</span></td>
                         <td v-else>
                             <span class="badge badge-danger" v-if="!pick.participant_extra.is_confirmed">NOT CONFIRMED</span>

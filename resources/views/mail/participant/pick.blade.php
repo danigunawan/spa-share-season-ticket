@@ -23,7 +23,7 @@
 <!-- Subcopy -->
 @if (isset($team_url))
 @component('mail::subcopy')
-You can view your team progress : [{{ $team_url }}]({{ $team_url }})
+You can view your draft progress : [{{ $team_url }}]({{ $team_url }})
 @endcomponent
 @endif
 @endcomponent

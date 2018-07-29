@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <h2>Team Details</h2>
+            <h2>Draft Details</h2>
             <loading :active.sync="loading" :is-full-page="false"></loading>
             <div class="table-responsive" v-if="!isError">
                 <table class="table">
@@ -41,7 +41,7 @@
                 </table>
             </div>
             <div class="alert alert-danger" role="alert" v-if="isError">
-                Failed to get Team Details, please try again
+                Failed to get Draft Details, please try again
             </div>
         </div>
     </div>

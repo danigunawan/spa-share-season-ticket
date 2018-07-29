@@ -127,7 +127,7 @@ class ParticipantPickEmail extends Mailable {
 			'second_line' => 'It’s time to make your selection in the draft for the seats you are sharing in section **' . $team->seat_section . '** row **' .
 			                 $team->seat_row
 			                 . '**. This is a snake draft (first pick in first round gets last pick in next round) ' . '' . 'and you were randomly assigned on ' .
-			                 $current_participant_orders->first() . ' selection (as there are ' . $num_participants . ' participants in your draft you then have the #'
+			                 $current_participant_orders->first() . ' selection (as there are ' . $num_participants . ' participants in your draft) you then have the #'
 			                 . $current_round->getNextParticipantToPick()->getId() . ' selection in round #' .
 			                 $current_round->getId() . '). Your selections are: ' . $current_participant_orders->implode( ', ' ),
 			'pickeds'     => $pickeds_text,
@@ -143,6 +143,6 @@ class ParticipantPickEmail extends Mailable {
 		return $this->markdown(
 			'mail.participant.pick',
 			$view_data
-		)->subject( 'Flames season ticket draft - it’s your pick!' );
+		)->subject( 'Flames season ticket draft - it’s your #' . $current_round->getNextParticipantToPick()->getId() . ' pick!' );
 	}
 }

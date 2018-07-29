@@ -16,7 +16,7 @@
 
 <hr/>
 @component('mail::table')
-| Team Detail | |
+| Draft Detail | |
 |-------------|-|
 | **Name**  | [{{ $team_name }}]({{ $team_url }}) |
 | **Participants**  | {{$num_participants}} |

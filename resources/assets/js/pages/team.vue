@@ -1,9 +1,9 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <h1>Team : {{ guid }}</h1>
+            <h1>Draft : {{ guid }}</h1>
             <p class="text-center">
-                Here you can view your team picking progress. Keep note of this URL!
+                Here you can view your draft picking progress. Keep note of this URL!
             </p>
             <div class="row">
                 <div class="col-md-6">
@@ -56,7 +56,7 @@
     data: () => ({
       title: window.config.appName,
       guid: '',
-      schedules_header: 'Available to Picks'
+      schedules_header: 'Available Games'
     }),
 
     created () {
