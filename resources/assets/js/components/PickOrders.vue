@@ -62,12 +62,14 @@
     data: () => ({
       isError: false,
       loading: false,
-      data: []
+      data: [],
+      timer: null
     }),
 
     watch: {},
     mounted () {
       this.fetch()
+      this.timer = setInterval(this.fetch, 10000)
     },
     methods: {
       async fetch () {
@@ -82,6 +84,11 @@
         } finally {
           this.loading = false
         }
+      }
+    },
+    beforeDestroy () {
+      if (this.timer) {
+        clearInterval(this.timer)
       }
     }
   }
